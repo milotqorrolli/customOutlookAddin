@@ -1,0 +1,228 @@
+/* ============================================
+   IDMS Mail Archivator - Styles
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+.container {
+    padding: 20px;
+    max-width: 100%;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #0078d4;
+}
+
+.header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #0078d4;
+    margin-bottom: 5px;
+}
+
+.version {
+    font-size: 11px;
+    color: #999;
+}
+
+/* Status Section */
+.status-section {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ccc;
+}
+
+.status-dot.status-active {
+    background-color: #10b981;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Card */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+/* Info Fields */
+.info-field {
+    margin-bottom: 12px;
+}
+
+.info-field label {
+    display: block;
+    font-weight: 600;
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-field .value {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    word-break: break-word;
+}
+
+/* Classification Styles */
+.classification-archive {
+    background-color: #d1fae5 !important;
+    color: #065f46 !important;
+    font-weight: 600;
+    border-left: 4px solid #10b981;
+}
+
+.classification-pending {
+    background-color: #fef3c7 !important;
+    color: #92400e !important;
+    font-weight: 600;
+    border-left: 4px solid #f59e0b;
+}
+
+.classification-ignore {
+    background-color: #fee2e2 !important;
+    color: #991b1b !important;
+    font-weight: 600;
+    border-left: 4px solid #ef4444;
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-primary {
+    background-color: #0078d4;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #106ebe;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #0078d4;
+    border: 2px solid #0078d4;
+}
+
+.btn-secondary:hover {
+    background-color: #f0f9ff;
+}
+
+/* Statistics Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 15px 10px;
+    background-color: #f9fafb;
+    border-radius: 6px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0078d4;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding-top: 15px;
+    margin-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.footer p {
+    font-size: 11px;
+    color: #999;
+    margin: 3px 0;
+}
