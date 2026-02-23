@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IDMS Mail Archivator</title>
+    
+    <!-- Office.js Library -->
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="taskpane.css">
+    
+    <!-- Your JavaScript -->
+    <script src="taskpane.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📧 IDMS Mail Archivator</h1>
+            <p class="version">v1.0.0</p>
+        </header>
+
+        <!-- Status Indicator -->
+        <section class="status-section">
+            <div class="status-indicator">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Initializing...</span>
+            </div>
+        </section>
+
+        <!-- Current Email Info -->
+        <section class="card">
+            <h2>Current Email</h2>
+            
+            <div class="info-field">
+                <label>Subject:</label>
+                <div id="emailSubject" class="value">-</div>
+            </div>
+            
+            <div class="info-field">
+                <label>From:</label>
+                <div id="emailFrom" class="value">-</div>
+            </div>
+            
+            <div class="info-field">
+                <label>Domain:</label>
+                <div id="emailDomain" class="value">-</div>
+            </div>
+            
+            <div class="info-field">
+                <label>Classification:</label>
+                <div id="classification" class="value classification-pending">-</div>
+            </div>
+            
+            <button id="classifyBtn" class="btn btn-primary" onclick="classifyCurrentEmail()">
+                Classify Email
+            </button>
+        </section>
+
+        <!-- Today's Statistics -->
+        <section class="card">
+            <h2>Today's Activity</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="statArchived">-</div>
+                    <div class="stat-label">Archived</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statPending">-</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statIgnored">-</div>
+                    <div class="stat-label">Ignored</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actions -->
+        <section class="card">
+            <h2>Actions</h2>
+            <button class="btn btn-secondary" onclick="refreshStats()">
+                Refresh Statistics
+            </button>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>IDMS Mail Archivator</p>
+            <p id="lastUpdate">Ready</p>
+        </footer>
+    </div>
+</body>
+</html>
