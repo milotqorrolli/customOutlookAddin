@@ -16,82 +16,122 @@
     <script src="taskpane.js"></script>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <h1>📧 IDMS Mail Archivator</h1>
-            <p class="version">v1.0.0</p>
-        </header>
+    <div class="window-container">
+        <!-- Window Title Bar -->
+        <div class="title-bar">
+            <span class="title-text">📧 IDMS MailArchivator (0.6.0.0)</span>
+            <div class="title-buttons">
+                <button class="title-btn minimize">−</button>
+                <button class="title-btn maximize">□</button>
+                <button class="title-btn close">×</button>
+            </div>
+        </div>
 
-        <!-- Status Indicator -->
-        <section class="status-section">
-            <div class="status-indicator">
-                <span class="status-dot" id="statusDot"></span>
-                <span id="statusText">Initializing...</span>
-            </div>
-        </section>
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('ruleSettings')">Rule Settings</button>
+            <button class="tab" onclick="switchTab('miscSettings')">Misc. Settings</button>
+        </div>
 
-        <!-- Current Email Info -->
-        <section class="card">
-            <h2>Current Email</h2>
+        <!-- Tab Content -->
+        <div class="tab-content">
             
-            <div class="info-field">
-                <label>Subject:</label>
-                <div id="emailSubject" class="value">-</div>
-            </div>
-            
-            <div class="info-field">
-                <label>From:</label>
-                <div id="emailFrom" class="value">-</div>
-            </div>
-            
-            <div class="info-field">
-                <label>Domain:</label>
-                <div id="emailDomain" class="value">-</div>
-            </div>
-            
-            <div class="info-field">
-                <label>Classification:</label>
-                <div id="classification" class="value classification-pending">-</div>
-            </div>
-            
-            <button id="classifyBtn" class="btn btn-primary" onclick="classifyCurrentEmail()">
-                Classify Email
-            </button>
-        </section>
+            <!-- Rule Settings Tab -->
+            <div id="ruleSettings" class="tab-pane active">
+                
+                <!-- Mailaddress instead of domains -->
+                <section class="form-section">
+                    <h3>Mailaddress instead of domains</h3>
+                    <label class="form-label">Select import file for MailsForDomains (.csv)</label>
+                    
+                    <div class="file-input-group">
+                        <input type="text" class="file-path" id="mailsForDomainsPath" 
+                               value="C:\Users\WZHABC\Raiffeisen Bank International Group\RBI Smart Office Support - 30 SOS-Topics\IDMS_Mail\Daten\MailsForDomains.csv" 
+                               readonly>
+                        <button class="select-btn">Select</button>
+                    </div>
+                    
+                    <textarea class="domain-textarea" id="mailsForDomains" rows="8">@gmail.com; @yahoo.com; @yahoo.de</textarea>
+                </section>
 
-        <!-- Today's Statistics -->
-        <section class="card">
-            <h2>Today's Activity</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-value" id="statArchived">-</div>
-                    <div class="stat-label">Archived</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="statPending">-</div>
-                    <div class="stat-label">Pending</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="statIgnored">-</div>
-                    <div class="stat-label">Ignored</div>
+                <!-- Domains to ignore -->
+                <section class="form-section">
+                    <h3>Domains to ignore</h3>
+                    <label class="form-label">Select import file for DomainsIgnored (.csv)</label>
+                    
+                    <div class="file-input-group">
+                        <input type="text" class="file-path" id="domainsIgnoredPath" 
+                               value="C:\Users\WZHABC\Raiffeisen Bank International Group\RBI Smart Office Support - 30 SOS-Topics\IDMS_Mail\Daten\DomainsToIgnore.csv" 
+                               readonly>
+                        <button class="select-btn">Select</button>
+                    </div>
+                    
+                    <textarea class="domain-textarea" id="domainsIgnored" rows="8">@rbinternational.com; @r-it.at</textarea>
+                </section>
+
+                <!-- Archive Button -->
+                <div class="action-section">
+                    <button class="archive-btn" onclick="archiveMails()">Archive Mails</button>
                 </div>
             </div>
-        </section>
 
-        <!-- Actions -->
-        <section class="card">
-            <h2>Actions</h2>
-            <button class="btn btn-secondary" onclick="refreshStats()">
-                Refresh Statistics
-            </button>
-        </section>
+            <!-- Misc. Settings Tab -->
+            <div id="miscSettings" class="tab-pane">
+                
+                <!-- Required Infos -->
+                <section class="form-section">
+                    <h3>Required Infos</h3>
+                    <label class="form-label">Select import file for CLEO Data (.csv)</label>
+                    
+                    <div class="file-input-group">
+                        <input type="text" class="file-path" id="cleoDataPath" 
+                               value="C:\Users\WZHABC\Raiffeisen Bank International Group\RBI Smart Office Support - 30 SOS-Topics\IDMS_Mail\DigitalACM_md.csv" 
+                               readonly>
+                        <button class="select-btn">Select</button>
+                    </div>
+                </section>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <p>IDMS Mail Archivator</p>
-            <p id="lastUpdate">Ready</p>
-        </footer>
+                <!-- Mailbox Name -->
+                <section class="form-section">
+                    <label class="form-label">Mailbox Name</label>
+                    <div class="input-with-clear">
+                        <input type="text" class="text-input" id="mailboxName" value="RBI-Doxis-Archive">
+                        <button class="clear-btn" onclick="clearField('mailboxName')">⊗</button>
+                    </div>
+                </section>
+
+                <!-- Archive Folder Name -->
+                <section class="form-section">
+                    <label class="form-label">Name of Archive Folder</label>
+                    <input type="text" class="text-input" id="archiveFolderName" value="Doxis Archive">
+                </section>
+
+                <!-- Delete Mails -->
+                <section class="form-section">
+                    <label class="form-label">Delete Mails in ToDo folder x days after creation - 0=never delete</label>
+                    <input type="number" class="number-input" id="deleteDays" value="14">
+                </section>
+
+                <!-- Infos Section -->
+                <section class="form-section">
+                    <h3>Infos</h3>
+                    
+                    <label class="form-label">Settings-Folder</label>
+                    <input type="text" class="text-input readonly-input" id="settingsFolder" 
+                           value="C:\Users\WZHABC\Documents\IDMS\" readonly>
+                    
+                    <label class="form-label">My mail address</label>
+                    <input type="text" class="text-input readonly-input" id="myMailAddress" 
+                           value="max.mustermann@rbinternational.com" readonly>
+                    
+                    <label class="form-label">Last import of CLEO data</label>
+                    <input type="text" class="text-input readonly-input" id="lastImport" 
+                           value="17.01.2022 13:36:16" readonly>
+                </section>
+
+            </div>
+
+        </div>
     </div>
 </body>
 </html>
